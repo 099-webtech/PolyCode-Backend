@@ -1,0 +1,3 @@
+# Python input + C++ output in one file
+n = input("Enter")
+cout << n
