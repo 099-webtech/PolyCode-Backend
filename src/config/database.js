@@ -6,11 +6,10 @@ const mongoose = require("mongoose");
  */
 async function connectToMongoDB() {
   if (!process.env.MONGODB_URI) {
-    console.error(
-      "❌ MONGODB_URI not found in environment. Check your .env file is UTF-8 encoded (not UTF-16).",
+    console.warn(
+      "⚠️  MONGODB_URI not found. Starting without MongoDB; auth, saved progress, and challenge persistence will be unavailable.",
     );
-    if (process.env.NODE_ENV === "production") process.exit(1);
-    return;
+    return null;
   }
 
   try {
@@ -26,9 +25,7 @@ async function connectToMongoDB() {
       "   Tip: Make sure your .env file is saved as UTF-8 (not UTF-16/Unicode).",
       "\n   In VS Code: bottom-right corner → click 'UTF-16 LE' → 'Save with Encoding' → UTF-8",
     );
-    if (process.env.NODE_ENV === "production") {
-      process.exit(1);
-    }
+    return null;
   }
 }
 
