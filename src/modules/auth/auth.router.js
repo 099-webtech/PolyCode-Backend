@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("./controllers/userController");
 const progressController = require("./controllers/progressController");
+const oopsCppProgressController = require("./controllers/oopsCppProgressController");
 
 // ── User Auth Routes ─────────────────────────────────────────────────────────
 
@@ -42,5 +43,33 @@ router.post(
   progressController.markLanguageComplete,
 );
 router.get("/progress/dashboard/:userId", progressController.getDashboardStats);
+
+// ── Learn: OOP C++ Progress Routes ───────────────────────────────────────────
+
+router.get("/learn/oops-cpp/progress", oopsCppProgressController.getProgress);
+router.post(
+  "/learn/oops-cpp/progress/last-lesson",
+  oopsCppProgressController.setLastLesson,
+);
+router.post(
+  "/learn/oops-cpp/progress/complete",
+  oopsCppProgressController.completeLesson,
+);
+router.post(
+  "/learn/oops-cpp/progress/code",
+  oopsCppProgressController.saveCode,
+);
+router.post(
+  "/learn/oops-cpp/progress/note",
+  oopsCppProgressController.saveNote,
+);
+router.post(
+  "/learn/oops-cpp/progress/bookmark",
+  oopsCppProgressController.toggleBookmark,
+);
+router.post(
+  "/learn/oops-cpp/progress/time",
+  oopsCppProgressController.addTime,
+);
 
 module.exports = router;
