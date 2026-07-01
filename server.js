@@ -281,6 +281,9 @@ app.use("/api/playground", playgroundRoutes);
 const challengeRoutes = require("./src/routes/challenge");
 app.use("/api/challenges", challengeRoutes);
 
+const polyguardRoutes = require("./src/modules/polyguard/polyguard.router");
+app.use("/api/polyguard", polyguardRoutes);
+
 const chatRoutes = require("./src/modules/chat/chat.router");
 app.use("/api/chat", requireMongoConnection, chatRoutes);
 
